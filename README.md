@@ -1,9 +1,25 @@
 # ABC to Guitar TAB Converter
 
-Take an ABC tune and convert to guitar tab showing possible string/fret
+## Summary
+Take an ABC tune file and convert to guitar tab showing possible string/fret
 combinations that will play the required note.
 
-Current Command Line usage.
+## Installation
+This script is very heavily dependent on Lucas Campagnola's pyabc script which
+you need to install in your environment.
+At present the easiet method for installing this is:
+```bash
+wget https://github.com/wxtim/pyabc/archive/makepyabc-a-module.zip -O pyabc.zip
+unzip pyabc.zip -d 
+pip install -e pyabc-makepyabc-a-module
+
+wget https://github.com/wxtim/ABC-to-guitar/archive/master.zip
+unzip master.zip
+cd ABC-to-guitar-master
+```
+
+
+## Current Command Line usage.
 
 ```
 usage: abctoguitar.py [-h] [--output OUTPUT] [--maxfret MAXFRET]
@@ -33,4 +49,4 @@ based on the work of
 Luke Campagnola, 2014
 
 # Licence
-GNU GPL3
+[GNU GPL3](LICENSE)
