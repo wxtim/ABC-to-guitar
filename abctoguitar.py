@@ -4,45 +4,59 @@
 import pyabc
 import argparse
 
+
 def get_args():
     # Get Import args
     parser = argparse.ArgumentParser(
         description="Take and ABC file and render possible guitar tabs")
     parser.add_argument("input", type=str,
                         help="An ABC file to feed to this script.")
-    parser.add_argument("--output", "-o",
-                        type=str,
-                        default=None,
-                        help=("Name for output file. If unset will replace *.abc"
-                        " with *.tab"))
-    parser.add_argument("--maxfret", "-x",
-                    type=int,
-                    default=5,
-                    help="The highest fret to allow use of. Default is 5th.")
-    parser.add_argument("--minfret", "-m",
-                        type=int,
-                        default=0,
-                        help="the lowest fret you wish to use. Default is 0.")
-    parser.add_argument("--testmode",
-                        action="store_true",
-                        help="turns on verbose printing out output")
-    parser.add_argument("--transpose", '-t',
-                        type=int,
-                        default=0,
-                        help=('Number of octaves to transpose')
-                        )
-    parser.add_argument("--tuning",
-                        type=str,
-                        choices=["EADGBE", "DADGBE"],
-                        default='DADGBE',
-                        help="Guitar tunings."
-                        )
+    parser.add_argument(
+        "--output", "-o",
+        type=str,
+        default=None,
+        help=(
+            "Name for output file. If unset will replace *.abc"
+            " with *.tab"
+        )
+    )
+    parser.add_argument(
+        "--maxfret", "-x",
+        type=int,
+        default=5,
+        help="The highest fret to allow use of. Default is 5th."
+    )
+    parser.add_argument(
+        "--minfret", "-m",
+        type=int,
+        default=0,
+        help="the lowest fret you wish to use. Default is 0."
+    )
+    parser.add_argument(
+        "--testmode",
+        action="store_true",
+        help="turns on verbose printing out output"
+    )
+    parser.add_argument(
+        "--transpose", '-t',
+        type=int,
+        default=0,
+        help=('Number of octaves to transpose')
+    )
+    parser.add_argument(
+        "--tuning",
+        type=str,
+        choices=["EADGBE", "DADGBE"],
+        default='DADGBE',
+        help="Guitar tunings."
+    )
     args = parser.parse_args()
     return args
 
+
 def output_filename(input_filename, output_filename=None):
     # Creates a sensible filename for programme output
-    #@TODO refactor to not need all args.
+    # @TODO refactor to not need all args.
     if output_filename:
         return output_filename
     else:
@@ -68,6 +82,7 @@ EADGBE = [pyabc.Pitch('E', -1),
           pyabc.Pitch('E', 1)]
 EADGBE.reverse()
 TUNINGS = [EADGBE, DADGAD]
+
 
 def setup_strings(tuning, maxfret=5, minfret=0):
     """
@@ -95,12 +110,13 @@ def setup_strings(tuning, maxfret=5, minfret=0):
         strings[i + 1] = frets
     return strings
 
+
 def main():
     args = get_args()
 
     # Open input file
     with open(args.input, 'r') as fhandle:
-        RAW_TUNE=fhandle.read()
+        RAW_TUNE = fhandle.read()
 
     # Parse the tune using pyabc
     try:
@@ -122,7 +138,7 @@ def main():
         elif type(note) != pyabc.Note:
             pass
         else:
-            note.octave +=  args.transpose
+            note.octave += args.transpose
             options = []
             for gstring in strings.values():
                 if note.pitch.abs_value in gstring.keys():
@@ -146,7 +162,6 @@ def main():
             else:
                 str_out += f"-{i:2s}-"
 
-
         bars = [bar for bar in str_out.split('|')]
         bargroups = []
 
@@ -166,6 +181,7 @@ def main():
 
     if args.testmode:
         print(final_out)
+
 
 if __name__ == '__main__':
     main()
