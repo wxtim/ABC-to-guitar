@@ -3,4 +3,4 @@ if ! ls abctoguitar.py > /dev/null; then
     echo "you need to be in the abctoguitar directory"
 fi
 
-PYTHONPATH=$PYTHONPATH:$PWD pytest -v
+PYTHONPATH=$PYTHONPATH:$PWD pytest "$@"

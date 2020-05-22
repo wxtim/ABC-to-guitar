@@ -22,9 +22,7 @@ cd ABC-to-guitar-master
 ## Current Command Line usage.
 
 ```
-usage: abctoguitar.py [-h] [--output OUTPUT] [--maxfret MAXFRET]
-                      [--minfret MINFRET] [--testmode]
-                      input
+usage: abctoguitar.py [-h] [--output OUTPUT] [--maxfret MAXFRET] [--minfret MINFRET] [--testmode] [--transpose TRANSPOSE] [--tuning {EADGBE,DADGBE}] input
 
 Take and ABC file and render possible guitar tabs
 
@@ -34,13 +32,17 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   --output OUTPUT, -o OUTPUT
-                        Name for output file. If unset will replace *.abc with
-                        *.tab
+                        Name for output file. If unset will replace *.abc with *.tab
   --maxfret MAXFRET, -x MAXFRET
                         The highest fret to allow use of. Default is 5th.
   --minfret MINFRET, -m MINFRET
                         the lowest fret you wish to use. Default is 0.
   --testmode            turns on verbose printing out output
+  --transpose TRANSPOSE, -t TRANSPOSE
+                        Number of octaves to transpose
+  --tuning {EADGBE,DADGBE}
+                        Guitar tunings.
+
 
 ```
 
