@@ -31,6 +31,12 @@ def get_args():
                         default=0,
                         help=('Number of octaves to transpose')
                         )
+    parser.add_argument("--tuning",
+                        type=str,
+                        choices=["EADGBE", "DADGBE"],
+                        default='DADGBE',
+                        help="Guitar tunings."
+                        )
     args = parser.parse_args()
     return args
 
@@ -54,7 +60,14 @@ DADGAD = [pyabc.Pitch('D', -1),
           pyabc.Pitch('A', 0),
           pyabc.Pitch('D', 1)]
 DADGAD.reverse()
-
+EADGBE = [pyabc.Pitch('E', -1),
+          pyabc.Pitch('A', -1),
+          pyabc.Pitch('D', 0),
+          pyabc.Pitch('G', 0),
+          pyabc.Pitch('B', 0),
+          pyabc.Pitch('E', 1)]
+EADGBE.reverse()
+TUNINGS = [EADGBE, DADGAD]
 
 def setup_strings(tuning, maxfret=5, minfret=0):
     """
@@ -75,7 +88,7 @@ def setup_strings(tuning, maxfret=5, minfret=0):
                 {string: {fret: note_int}}
     """
     strings = {}
-    for i, string in enumerate(DADGAD):
+    for i, string in enumerate(tuning):
         frets = {}
         for fret in range(minfret, maxfret):
             frets[fret + string.abs_value] = fret
@@ -95,7 +108,11 @@ def main():
     except KeyError:
         tune = pyabc.Tune("X:0\n" + RAW_TUNE)
 
-    strings = setup_strings(DADGAD, args.maxfret, args.minfret)
+    if args.tuning == 'EADGBE':
+        tuning = EADGBE
+    else:
+        tuning = DADGAD
+    strings = setup_strings(tuning, args.maxfret, args.minfret)
     # Memoize this?
     possible_tabs = []
     for note in tune.tokens:

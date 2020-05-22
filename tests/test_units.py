@@ -21,7 +21,8 @@ def test_output_filename(ifilename, oufilename, result):
     'tuning, maxfret, minfret, result',
     [
         (DADGAD, 5, 0, {-10: 0, -9: 1, -8: 2, -7: 3, -6: 4}),
-        (DADGAD, 6, 1, {-9: 1, -8: 2, -7: 3, -6: 4, -5: 5})   
+        (DADGAD, 6, 1, {-9: 1, -8: 2, -7: 3, -6: 4, -5: 5}),
+        (EADGBE, 5, 0, {-8: 0, -7: 1, -6: 2, -5: 3, -4: 4}),   
     ]
 )
 def test_setup_strings(tuning, maxfret, minfret, result):

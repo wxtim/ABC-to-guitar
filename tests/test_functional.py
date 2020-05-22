@@ -9,17 +9,6 @@ import pytest
     "command, stdout, stderr",
     [
         (
-            "./abctoguitar.py",
-            b"",
-            (
-                b"usage: abctoguitar.py [-h] [--output OUTPUT] "
-                b"[--maxfret MAXFRET]\n                      "
-                b"[--minfret MINFRET] [--testmode] [--transpose TRANSPOSE]\n"
-                b"                      input\nabctoguitar.py: error: the "
-                b"following arguments are required: input\n"
-            ),
-        ),
-        (
             "./abctoguitar.py tests/example.abc",
             b'|:E2c cBA|FAF E3|E2c cBA|cde B3:|\n',
             b""
