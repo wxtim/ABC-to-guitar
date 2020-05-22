@@ -32,4 +32,4 @@ jobs:
         pycodestyle *.py tests/*.py
     - name: Test with pytest
       run: |
-        pytest
+        ./etc/tests
