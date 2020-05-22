@@ -58,7 +58,7 @@ import pytest
         ), 
     ],
 )
-def test_no_args(command, stdout, stderr):
+def test_functional(command, stdout, stderr):
     result = Popen(split(command), stdout=PIPE, stderr=PIPE)
     # breakpoint()
     assert result.stderr.read() == stderr
