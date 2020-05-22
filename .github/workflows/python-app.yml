@@ -25,8 +25,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest numpy
         wget https://github.com/wxtim/pyabc/archive/master.zip -O pyabc.zip
-        unzip pyabc.zip -d /home/runner/work/pyabc
-        pip install -e /home/runner/work/pyabc/.
+        unzip pyabc.zip -d /home/runner/work/
+        pip install -e /home/runner/work/pyabc-master/.
     - name: Pycodestyle
       run: |
         pycodestyle
