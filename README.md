@@ -1,6 +1,9 @@
 # ABC to Guitar TAB Converter
 
 ## Summary
+
+![](https://github.com/wxtim/ABC-to-guitar/workflows/Test%20with%20pytest/badge.svg)
+
 Take an ABC tune file and convert to guitar tab showing possible string/fret
 combinations that will play the required note.
 
