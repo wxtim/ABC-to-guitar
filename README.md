@@ -2,7 +2,7 @@
 
 ## Summary
 
-![test](https://github.com/wxtim/ABC-to-guitar/workflows/python-app/badge.svg?branch=master&event=push)
+![Python application](https://github.com/wxtim/ABC-to-guitar/workflows/Python%20application/badge.svg?branch=master)
 
 Take an ABC tune file and convert to guitar tab showing possible string/fret
 combinations that will play the required note.
