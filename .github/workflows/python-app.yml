@@ -29,7 +29,7 @@ jobs:
         pip install -e /home/runner/work/pyabc-master/.
     - name: Pycodestyle
       run: |
-        pycodestyle
+        pycodestyle *.py tests/*.py
     - name: Test with pytest
       run: |
         pytest
