@@ -34,13 +34,16 @@ def get_args():
     args = parser.parse_args()
     return args
 
-def output_filename(args):
+def output_filename(input_filename, output_filename=None):
     # Creates a sensible filename for programme output
-    if not args.output:
-        if args.input[-4:].lower() == ".abc":
-            return args.input[:-4] + ".tab"
+    #@TODO refactor to not need all args.
+    if output_filename:
+        return output_filename
+    else:
+        if input_filename[-4:].lower() == ".abc":
+            return input_filename[:-4] + ".tab"
         else:
-            return args.input + ".tab"
+            return input_filename + ".tab"
 
 
 # Setup the Tuning
@@ -53,7 +56,7 @@ DADGAD = [pyabc.Pitch('D', -1),
 DADGAD.reverse()
 
 
-def setup_strings(tuning, maxfret, minfret):
+def setup_strings(tuning, maxfret=5, minfret=0):
     """
     Create a data structure representing all the playable notes
 
@@ -75,7 +78,7 @@ def setup_strings(tuning, maxfret, minfret):
     for i, string in enumerate(DADGAD):
         frets = {}
         for fret in range(minfret, maxfret):
-            frets[fret + string.abs_value] =  fret
+            frets[fret + string.abs_value] = fret
         strings[i + 1] = frets
     return strings
 
@@ -141,7 +144,7 @@ def main():
         with open(args.output, 'w') as fhandle:
             fhandle.write(final_out)
     else:
-        with open(output_filename(args), 'w') as fhandle:
+        with open(output_filename(args.input, args.output), 'w') as fhandle:
             fhandle.write(final_out)
 
     if args.testmode:
