@@ -24,13 +24,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest numpy
-        wget https://github.com/wxtim/pyabc/archive/makepyabc-a-module.zip -O pyabc.zip
-        unzip pyabc.zip -d 
-        pip install -e pyabc-makepyabc-a-module
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        wget https://github.com/wxtim/pyabc/archive/master.zip -O pyabc.zip
+        unzip pyabc.zip -d /home/runner/work/
+        pip install -e /home/runner/work/pyabc-master/.
     - name: Pycodestyle
       run: |
-        pycodestyle
+        pycodestyle *.py tests/*.py
     - name: Test with pytest
       run: |
-        pytest
+        ./etc/tests
